@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shrekbuck Admin Dashboard</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4ffe1;
+      color: #2e7d32;
+      text-align: center;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #43a047;
+    }
+
+    #dashboard-container {
+      margin: 0 auto;
+      text-align: left;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      padding: 20px;
+      max-width: 800px;
+    }
+
+    .price-section, .user-list {
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    table th {
+      background-color: #66bb6a;
+      color: white;
+    }
+
+    button {
+      padding: 8px 16px;
+      background-color: #66bb6a;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #43a047;
+    }
+  </style>
+</head>
+<body>
+  <h1>Shrekbuck Admin Dashboard</h1>
+  <div id="dashboard-container">
+    <!-- Current Price Section -->
+    <div class="price-section">
+      <h2>Current Price</h2>
+      <p>1 Shrekbuck = <span id="current-price">$5.00</span></p>
+      <label for="price-input">Update Price: </label>
+      <input type="number" id="price-input" placeholder="Enter new price">
+      <button onclick="updatePrice()">Update</button>
+    </div>
+
+    <!-- User List Section -->
+    <div class="user-list">
+      <h2>User Balances</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Balance (Shrekbucks)</th>
+          </tr>
+        </thead>
+        <tbody id="user-table">
+          <!-- User data will be dynamically added here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    // Fake user data
+    const users = [
+      { name: "Fiona", email: "fiona@swamp.com", balance: 100 },
+      { name: "Donkey", email: "donkey@swamp.com", balance: 150 },
+      { name: "Lord Farquaad", email: "farquaad@castle.com", balance: 200 },
+    ];
+
+    // Populate user table
+    const userTable = document.getElementById("user-table");
+    users.forEach(user => {
+      const row = `
+        <tr>
+          <td>${user.name}</td>
+          <td>${user.email}</td>
+          <td>${user.balance}</td>
+        </tr>
+      `;
+      userTable.innerHTML += row;
+    });
+
+    // Update price
+    function updatePrice() {
+      const priceInput = document.getElementById("price-input").value;
+      const currentPrice = document.getElementById("current-price");
+
+      if (priceInput) {
+        currentPrice.textContent = `$${parseFloat(priceInput).toFixed(2)}`;
+        alert(`Shrekbuck price updated to $${parseFloat(priceInput).toFixed(2)}`);
+      } else {
+        alert("Please enter a valid price.");
+      }
+    }
+  </script>
+</body>
+</html>
