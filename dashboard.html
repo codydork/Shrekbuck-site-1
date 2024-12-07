@@ -84,10 +84,18 @@
       background-color: #00796b;
     }
 
+    #price-chart-container {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+    }
+
     #price-chart {
-      max-width: 100%;
-      height: 400px;
-      margin: 20px 0;
+      width: 100%;
+      height: 300px; /* Smaller fixed height */
     }
 
     #dark-mode-switch {
@@ -105,7 +113,6 @@
       color: white;
       border: 1px solid #555;
     }
-
   </style>
 </head>
 
@@ -124,7 +131,12 @@
       <label for="price-input">Update Price: </label>
       <input type="number" id="price-input" placeholder="Enter new price">
       <button onclick="updatePrice()">Update</button>
-      <canvas id="price-chart"></canvas> <!-- Chart Section -->
+
+      <!-- Chart Section in a smaller box -->
+      <div id="price-chart-container">
+        <h3>Price History</h3>
+        <canvas id="price-chart"></canvas>
+      </div>
     </div>
 
     <!-- User List Section -->
