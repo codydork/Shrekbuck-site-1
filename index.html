@@ -1,39 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShrekBucks Bank</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shrekbuck Secure Access</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #e8f5e9;
+      color: #2e7d32;
+      text-align: center;
+      padding: 50px;
+    }
+
+    #auth-container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      width: 350px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 0;
+      color: #388e3c;
+    }
+
+    input[type="password"] {
+      padding: 12px;
+      font-size: 18px;
+      width: 85%;
+      margin: 15px 0;
+      border: 2px solid #a5d6a7;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 12px 25px;
+      background-color: #66bb6a;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #43a047;
+    }
+
+    #error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    #content {
+      display: none;
+      margin-top: 50px;
+    }
+
+    #content h1 {
+      color: #1b5e20;
+    }
+
+    a {
+      text-decoration: none;
+      color: #388e3c;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
+  <div id="auth-container">
+    <h1>Shrekbuck Secure Access</h1>
+    <p>Enter your PIN to unlock the treasures!</p>
+    <input type="password" id="pin" placeholder="Enter your 4-digit PIN" maxlength="4">
+    <button onclick="validatePin()">Submit</button>
+    <p id="error-message"></p>
+  </div>
 
-    <header>
-        <h1>Welcome to ShrekBucks Bank</h1>
-        <p>Your friendly neighborhood bank with an ogre twist!</p>
-    </header>
+  <div id="content">
+    <h1>Welcome to Your Vault</h1>
+    <p>Congratulations! You’ve accessed the secure content.</p>
+    <a href="dashboard.html">Go to Admin Dashboard</a>
+  </div>
 
-    <section id="login-section">
-        <h2>Login to your ShrekBucks Account</h2>
-        <form id="login-form">
-            <label for="username">Username:</label>
-            <input type="text" id="username" required><br><br>
+  <script>
+    const correctPin = "1234"; // Replace with backend validation
+    function validatePin() {
+      const pinInput = document.getElementById("pin").value;
+      const errorMessage = document.getElementById("error-message");
+      const content = document.getElementById("content");
+      const authContainer = document.getElementById("auth-container");
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" required><br><br>
-
-            <button type="submit">Login</button>
-        </form>
-
-        <div id="login-error-message" class="error-message" style="display: none;">Incorrect Username or Password!</div>
-    </section>
-
-    <section id="bank-info-section" style="display:none;">
-        <h2>ShrekBucks Banking Services</h2>
-        <p>At ShrekBucks, we offer various services, including savings accounts, loans, and investment opportunities. We believe in providing secure and accessible banking to all our customers.</p>
-        <p>Our friendly ogre staff are ready to help you manage your finances with ease. Let's get started!</p>
-    </section>
-
-    <script src="script.js"></script>
+      if (pinInput === correctPin) {
+        authContainer.style.display = "none";
+        content.style.display = "block";
+      } else {
+        errorMessage.textContent = "Incorrect PIN. Try again.";
+      }
+    }
+  </script>
 </body>
 </html>
